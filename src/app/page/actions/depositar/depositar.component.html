@@ -1,0 +1,50 @@
+<mat-card>
+  <mat-card-subtitle style="place-content: center;">
+    <p class="h4" style="margin-left: 41%;">DEPOSITAR</p> <br>
+    <p class="h6">NOTAS ACEITAS: R$100, R$50, R$20, R$10.</p> <br>
+    <p class="h6">VALOR MÁXIMO PARA DEPÓSITO: R$5.000,00.</p> <br>
+    <form [formGroup]="depositarForm">
+      <div class="h6">
+        <p class="h6">UTILIZE AS OPÇÕES ABAIXO PARA SELECIONAR O VALOR PARA DEPÓSITO:</p> <br>
+        <div style="display: inline-flex;">
+          <div style="margin-top: 2.3px;">
+            R$100:
+          </div>
+          <div>
+            <input type="number" matInput class="form-control" min="0" max="99" step="1" value="0"
+              style="margin-left:6px;width:40px;height:25px;color:#16a085" formControlName="inputValorCemReais" (change)="SetarValorDeposito()" (keypress)="QuantidadeNotas($event.target.value)">
+          </div>
+          <div style="margin-top: 2.3px;margin-left: 5px">
+            R$50:
+          </div>
+          <div>
+            <input type="number" matInput class="form-control" min="0" max="99" step="1" value="0"
+              style="margin-left:6px;width:40px;height:25px;color:#16a085" formControlName="inputValorCinquentaReais" (change)="SetarValorDeposito()" (keypress)="QuantidadeNotas($event.target.value)">
+          </div>
+          <div style="margin-top: 2.3px;margin-left: 5px">
+            R$20:
+          </div>
+          <div>
+            <input type="number" matInput class="form-control" min="0" max="99" step="1" value="0"
+              style="margin-left:6px;width:40px;height:25px;color:#16a085" formControlName="inputValorVinteReais" (change)="SetarValorDeposito()" (keypress)="QuantidadeNotas($event.target.value)">
+          </div>
+          <div style="margin-top: 2.3px;margin-left: 5px;">
+            R$10:
+          </div>
+          <div>
+            <input type="number" matInput class="form-control" min="0" max="99" step="1" value="0"
+              style="margin-left:6px;width:40px;height:25px;color:#16a085" formControlName="inputValorDezReais" (change)="SetarValorDeposito()" (keypress)="QuantidadeNotas($event.target.value)">
+          </div>
+        </div>
+        <p style="margin-top: 10px;">
+          VALOR PARA DEPÓSITO:
+          <mat-form-field style="margin-left: 5px; width: 120px;">
+            <input matInput maxlength="11" currencyMask formControlName="inputValorDepositar">
+          </mat-form-field>
+          <button mat-raised-button style="background-color: #222f3e; color: #10ac84; margin-left:  20px;"
+            (click)="Depositar()">DEPOSITAR</button>
+        </p>
+      </div>
+    </form>
+  </mat-card-subtitle>
+</mat-card>
