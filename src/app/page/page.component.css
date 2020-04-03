@@ -2,3 +2,21 @@ table {
   width: 100%;
 }
 
+.mat-toolbar {
+  background-color: #222f3e;
+  color: #10ac84;
+  justify-content: flex-end;
+}
+
+.tituloPage {
+  font-size: medium;
+  padding: 12px 0px 0px 20px;
+}
+
+.col-8 {
+  margin-top: 10%;
+}
+
+.centralizar {
+  place-content: center;
+}

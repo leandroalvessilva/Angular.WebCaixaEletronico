@@ -10,5 +10,4 @@ export class Conta {
   CpfCli: number;
 
   Nome_cliente: string;
-
 }

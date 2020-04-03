@@ -1,17 +1,16 @@
 <mat-card>
-  <mat-card-subtitle style="place-content: center;">
-    <p class="h4" style="margin-left: 45%;">SACAR</p> <br>
+  <mat-card-subtitle>
+    <p class="h4">SACAR</p> <br>
     <p class="h6">NOTAS DISPONÍVEIS: R$100, R$50, R$20, R$10.</p> <br>
     <p class="h6">VALOR MÁXIMO PARA SAQUE: R$2.000,00.</p> <br>
     <form [formGroup]="sacarForm">
       <div class="h5">
         <p>
           DIGITE O VALOR PARA SAQUE:
-          <mat-form-field style="margin-left: 5px; width: 120px;">
+          <mat-form-field>
             <input matInput maxlength="11" currencyMask formControlName="inputValorSacar">
           </mat-form-field>
-          <button mat-raised-button style="background-color: #222f3e; color: #10ac84; margin-left:  20px;"
-            (click)="Sacar()">SACAR</button>
+          <button mat-raised-button class="botaoSacar" (click)="Sacar()">SACAR</button>
         </p>
       </div>
     </form>

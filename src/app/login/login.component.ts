@@ -4,7 +4,6 @@ import { FormGroup, FormControl, FormBuilder } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Conta } from "../page/model/Conta.model";
 
-
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -30,7 +29,6 @@ export class LoginComponent implements OnInit {
       inputCpf: new FormControl(""),
       inputSenha: new FormControl("")
     });
-
     this.contaUsario = new Conta();
   }
 
@@ -40,10 +38,9 @@ export class LoginComponent implements OnInit {
       this.contaUsario.AgenciaContaCli = data.Data.substr(39, 4);
       this.contaUsario.NumeroContaCli = data.Data.substr(61, 8);
       this.contaUsario.SaldoConta = data.Data.substr(83, 12);
-      this.contaUsario.CpfCli = data.Data.substr(105,11);
-      this.contaUsario.Nome_cliente = data.Data.substr(133,40);
+      this.contaUsario.CpfCli = data.Data.substr(105, 11);
+      this.contaUsario.Nome_cliente = data.Data.substr(133, 40);
       this.loginService.updatedDataSelection(this.contaUsario);
-      this.loginService.UsuarioEstaLogado();
     });
   }
 
@@ -53,7 +50,7 @@ export class LoginComponent implements OnInit {
 
     this.loginService.Login(cpf, senha).subscribe(async (data: any) => {
       if (!data.Data) {
-        this.error = "CPF ou senha Inválidos";
+        this.error = "CPF ou senha inválidos";
         return;
       }
       this.ListarUsuario(cpf);

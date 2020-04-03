@@ -8,8 +8,6 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-
-
 @Component({
   selector: 'app-sacar',
   templateUrl: './sacar.component.html',
@@ -20,9 +18,16 @@ export class SacarComponent implements OnInit {
   contaUsuario: Conta;
   sacarModel: SacarModel;
   sacarForm: FormGroup;
+  dialogConfig: MatDialogConfig;
+  novoArray: any;
 
-  constructor(private loginService: LoginService, private pageService: PageService,
-    private fb: FormBuilder, private dialog: MatDialog, private _snackBar: MatSnackBar) { }
+  constructor(
+    private loginService: LoginService,
+    private pageService: PageService,
+    private fb: FormBuilder,
+    private dialog: MatDialog,
+    private _snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
 
@@ -30,9 +35,17 @@ export class SacarComponent implements OnInit {
       inputValorSacar: new FormControl("")
     });
 
+    this.novoArray = [];
     this.contaUsuario = new Conta();
     this.sacarModel = new SacarModel();
     this.ListarUsuario();
+
+    this.dialogConfig = {
+      width: '800px',
+      height: '350px',
+      position: { top: '13%' },
+      data: { data: this.sacarModel }
+    };
   }
 
   ListarUsuario() {
@@ -43,21 +56,13 @@ export class SacarComponent implements OnInit {
   }
 
   Sacar() {
-    const dialogConfig: MatDialogConfig = {
-      width: '800px',
-      height: '350px',
-      position: { top: '13%' },
-      data: { data: this.sacarModel }
-    };
-
     this.sacarModel.ValorSacar = this.sacarForm.get('inputValorSacar').value == '' ? this.sacarForm.get('inputValorSacar').value : this.sacarForm.get('inputValorSacar').value.toFixed(2);
 
     this.pageService.Sacar(this.contaUsuario, parseFloat(this.sacarModel.ValorSacar)).subscribe((data: any) => {
-      console.log('RETORNO SAQUE : ' + data.Data);
       if (data.Codigo == 200) {
         this.sacarModel.SaldoAtual = data.Data.substr(92, 12);
         this.sacarModel.NotasUtilizadas = this.MontarArrayNotas(data.Data.substr(203, 13));
-        this.dialog.open(SacarModalComponent, dialogConfig);
+        this.dialog.open(SacarModalComponent, this.dialogConfig);
         this.sacarForm.get('inputValorSacar').setValue("0");
       }
       else {
@@ -68,27 +73,24 @@ export class SacarComponent implements OnInit {
     });
   }
 
-
   MontarArrayNotas(ArrayNotasDevolvidas: string) {
-    let NovoArray
-
     if (ArrayNotasDevolvidas.length == 12) {
-      NovoArray = ArrayNotasDevolvidas.substr(1, 10).split(',')
-      return NovoArray;
+      this.novoArray = ArrayNotasDevolvidas.substr(1, 10).split(',')
+      return this.novoArray;
     }
     else if (ArrayNotasDevolvidas.length == 11) {
-      NovoArray = ArrayNotasDevolvidas.substr(1, 9).split(',')
-      return NovoArray;
+      this.novoArray = ArrayNotasDevolvidas.substr(1, 9).split(',')
+      return this.novoArray;
     }
     else if (ArrayNotasDevolvidas.length == 10) {
-      NovoArray = ArrayNotasDevolvidas.substr(1, 8).split(',')
-      return NovoArray;
+      this.novoArray = ArrayNotasDevolvidas.substr(1, 8).split(',')
+      return this.novoArray;
     }
     else if (ArrayNotasDevolvidas.length == 9) {
-      NovoArray = ArrayNotasDevolvidas.substr(1, 7).split(',');
-      return NovoArray;
+      this.novoArray = ArrayNotasDevolvidas.substr(1, 7).split(',');
+      return this.novoArray;
     }
-    NovoArray = ArrayNotasDevolvidas.substr(1, 11).replace(']','').split(',')
-    return NovoArray;
+    this.novoArray = ArrayNotasDevolvidas.substr(1, 11).replace(']', '').split(',')
+    return this.novoArray;
   }
 }

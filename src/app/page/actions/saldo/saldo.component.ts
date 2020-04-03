@@ -13,7 +13,10 @@ export class SaldoComponent implements OnInit {
   contaUsuario: Conta;
   saldo: string;
 
-  constructor(private loginService: LoginService, private pageService: PageService) { }
+  constructor(
+    private loginService: LoginService,
+    private pageService: PageService
+  ) { }
 
   ngOnInit(): void {
     this.contaUsuario = new Conta();
@@ -25,8 +28,13 @@ export class SaldoComponent implements OnInit {
     this.loginService.data.subscribe(data => {
       this.contaUsuario = data;
       this.pageService.Saldo(data).subscribe(data => {
-        this.contaUsuario.SaldoConta = parseFloat(data.Data).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+        this.contaUsuario.SaldoConta = this.FormatarValor(data);
       });
     });
+  }
+
+  FormatarValor(data: any) {
+    let valorFormatado = parseFloat(data.Data).toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+    return valorFormatado;
   }
 }

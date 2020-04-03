@@ -2,7 +2,6 @@ export const environment = {
   production: false,
 
   //Caminhos API
-
   api: 'https://localhost:44366/',
 
   //Controller Operações Bancárias

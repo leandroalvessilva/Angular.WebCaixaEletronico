@@ -1,13 +1,14 @@
- <p class="h4" style="margin-left: 50px;text-align: center;" mat-dialog-title>SAQUE REALIZADO COM SUCESSO.</p>
+ <p class="h4" mat-dialog-title>SAQUE REALIZADO COM SUCESSO.</p>
 
  <mat-dialog-content>
-   <p class="h6" style="margin-top: 40px;">VALOR SACADO: R$ {{informacoesSacar.ValorSacar}}. </p>
-   <p class="h6" style="margin-top: 40px;">NOTAS UTILIZADAS: R$100 : {{informacoesSacar.NotasUtilizadas[0]}}, R$50 : {{informacoesSacar.NotasUtilizadas[1]}},
-    R$20 : {{informacoesSacar.NotasUtilizadas[2]}}, R$10 : {{informacoesSacar.NotasUtilizadas[3]}}.
-  </p>
-   <p class="h5" style="margin-top: 40px;">SALDO ATUAL: R${{informacoesSacar.SaldoAtual}}.</p>
+   <p class="h6">VALOR SACADO: R$ {{informacoesSacar.ValorSacar}}. </p>
+   <p class="h6">NOTAS UTILIZADAS: R$100 : {{informacoesSacar.NotasUtilizadas[0]}}, R$50 :
+     {{informacoesSacar.NotasUtilizadas[1]}},
+     R$20 : {{informacoesSacar.NotasUtilizadas[2]}}, R$10 : {{informacoesSacar.NotasUtilizadas[3]}}.
+   </p>
+   <p class="h5">SALDO ATUAL: R${{informacoesSacar.SaldoAtual}}.</p>
  </mat-dialog-content>
 
  <mat-dialog-actions>
-  <button class="mat-raised-button" (click)="close()">Fechar</button>
-</mat-dialog-actions>
+   <button class="mat-raised-button" (click)="close()">Fechar</button>
+ </mat-dialog-actions>

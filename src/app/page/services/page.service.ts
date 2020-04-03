@@ -14,21 +14,21 @@ export class PageService {
 
   public Saldo(conta: Conta): Observable<any> {
     return this.http.get(`${urlDataDomain}${urlOperacoesBancariasSaldo}?banco=${conta.BancoContaCli}&agencia=${conta.AgenciaContaCli}&numeroConta=${conta.NumeroContaCli}&cpf=${conta.CpfCli}`)
-    .pipe(map((response) => response))
-    .pipe(catchError((error) => error));
+      .pipe(map((response) => response))
+      .pipe(catchError((error) => error));
   }
 
   public Sacar(conta: Conta, valorSacar: number): any {
-    return this.http.post(`${urlDataDomain}${urlOperacoesBancariasSacar}?ValorSacar=${valorSacar}`,JSON.stringify(conta),
-    {headers: this.headers})
-    .pipe(map((response) => response))
-    .pipe(catchError((error) => error));
+    return this.http.post(`${urlDataDomain}${urlOperacoesBancariasSacar}?ValorSacar=${valorSacar}`, JSON.stringify(conta),
+      { headers: this.headers })
+      .pipe(map((response) => response))
+      .pipe(catchError((error) => error));
   }
 
   public Depositar(conta: Conta, valorDepositar: number, arrayNotasDeposito: string): any {
-    return this.http.post(`${urlDataDomain}${urlOperacoesBancariasDepositar}?valorDepositar=${valorDepositar}&notasDepositadas=${arrayNotasDeposito}`,JSON.stringify(conta),
-    {headers: this.headers})
-    .pipe(map((response) => response))
-    .pipe(catchError((error) => error));
+    return this.http.post(`${urlDataDomain}${urlOperacoesBancariasDepositar}?valorDepositar=${valorDepositar}&notasDepositadas=${arrayNotasDeposito}`, JSON.stringify(conta),
+      { headers: this.headers })
+      .pipe(map((response) => response))
+      .pipe(catchError((error) => error));
   }
 }
